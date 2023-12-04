@@ -1,0 +1,14 @@
+{
+  "name": "intexapp",
+  "version": "1.0.0",
+  "description": "Intex Application for CRUD and adding data to database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JASS",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
