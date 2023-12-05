@@ -1,18 +1,17 @@
 {
-  "name": "intexapp",
+  "name": "intex-1v3",
   "version": "1.0.0",
-  "description": "Intex Application for CRUD and adding data to database",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app"
   },
-  "author": "JASS",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "knex": "^3.0.1",
-    "pg": "^8.11.3"
+    "path": "^0.12.7"
   }
 }
