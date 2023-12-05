@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css"/>
+    <title>SMU UH</title>
+</head>
+<body id="bg"> <!--IMAGES FROM PEXELS-->
+
+    <div id="navbar">
+        <div id="logo">
+            SMU UH Committee
+        </div>
+        <script>
+            document.getElementById("logo").addEventListener("click", function() {
+                window.location.href = "index.html";
+            });
+        </script>
+        <div id="nav">
+            <ul>
+                <li><a href="/views/survey.html">Survey</a></li>
+                <li><a href="/views/awareness.html">About <p2>SMU UH</p2></a></li>
+                <li><a href="/views/login.html">Admin Login</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="loginContent" style="margin-top:15%;">
+        <div>
+            <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
+            <form>
+                <label for="username" style="text-align:left;">Username:</label>
+                <input type="text" id="username" name="username">
+                <br>
+                <br>
+                <label for="password" style="text-align:left;">Password:</label>
+                <input type="password" id="password" name="password">
+            </form>
+        </div>
+        <br>
+        <div id="button">
+            <a href="#" class="button-23" role="button" onclick="Login()">Login</a>
+        </div>
+        <p id="registrationLink">Don't have an account? <a href="#" onclick="showRegistrationForm()">Register</a></p>
+    </div>
+
+    <div id="footer01">
+        <p2>&copy SMU UH  |  smuuh@gmail.com  |  555-555-5555  </p2>
+    </div>
+
+    <script>
+        function showRegistrationForm() {
+            var loginContent = document.getElementById("loginContent");
+            loginContent.innerHTML = `
+                <div>
+                    <h1 style="text-align:left; margin-left:26.5%;">Register</h1>
+                    <!-- Your registration form HTML goes here -->
+                    <form>
+                        <label for="newUsername" style="text-align:left;">New Username:</label>
+                        <input type="text" id="newUsername" name="newUsername">
+                        <br>
+                        <br>
+                        <label for="newEmail" style="text-align:left;">Email:</label>
+                        <input type="text" id="newEmail" name="newEmail">
+                        <br>
+                        <br>
+                        <label for="newPassword" style="text-align:left;">New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword">
+                    </form>
+                </div>
+                <br>
+                <div id="button">
+                    <a href="#" class="button-23" role="button" onclick="Register()">Register</a>
+                </div>
+                <p id="showLoginLink">Return to <a href="#" onclick="showLoginForm()">Login</a></p>
+            `;
+            document.getElementById("registrationLink").style.display = "none";
+        }
+
+        function showLoginForm() {
+            var loginContent = document.getElementById("loginContent");
+            loginContent.innerHTML = `
+                <div>
+                    <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
+                    <form>
+                        <label for="username" style="text-align:left;">Username:</label>
+                        <input type="text" id="username" name="username">
+                        <br>
+                        <br>
+                        <label for="password" style="text-align:left;">Password:</label>
+                        <input type="password" id="password" name="password">
+                    </form>
+                </div>
+                <br>
+                <div id="button">
+                    <a href="#" class="button-23" role="button" onclick="Login()">Login</a>
+                </div>
+                <p id="registrationLink">Don't have an account? <a href="#" onclick="showRegistrationForm()">Register</a></p>
+
+            `;
+            document.getElementById("registrationLink").style.display = "block";
+        }
+    </script>
+</body>
+</html>
