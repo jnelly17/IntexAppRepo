@@ -23,8 +23,8 @@ const knex = require("knex")({
 })
 
 app.get("/", (req, res) => {
-    knex.select().from("country").then( country => {
-        res.render("displayCountry", { mycountry : country });
+    knex.select().from("survey").then( survey => {
+        res.render("displaySurvey", { mysurvey : survey });
     })
 })
 
