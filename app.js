@@ -24,7 +24,7 @@ const knex = require("knex")({
 
 app.get("/", (req, res) => {
     knex.select().from("survey").then( survey => {
-        res.render("displaySurvey", { mysurvey : survey });
+        res.render("displayPractice", { mysurvey : survey });
     })
 })
 
