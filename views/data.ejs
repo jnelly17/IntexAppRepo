@@ -4,33 +4,9 @@
 <br>
 <br>
 <br>
-<table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
-    <thead style="background-color: cornflowerblue; color: white;">
-      <tr>
-        <th style="text-align: left;">Survey Time</th>
-        <th style="text-align: left;">Survey Number</th>
-        <th style="text-align: left;">City</th>
-        <th style="text-align: left;">Age</th>
-        <th style="text-align: left;">Gender</th>
-        <th style="text-align: left;">Relationship</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody style="font-family: Arial; font-size: 9pt;">
-     <% for (let iCount = 0; iCount < mysurvey.length; iCount++) { %>
-        <tr>
-          <td><%= mysurvey[iCount].SurveyTime %></td>
-          <td><%= mysurvey[iCount].SurveyNumber %></td>
-          <td><%= mysurvey[iCount].City %></td>
-          <td><%= mysurvey[iCount].Age %></td>
-          <td style="text-align: center;"><%= mysurvey[iCount].Gender %></td>
-          <td style="text-align: center;"><%= mysurvey[iCount].Relationship %></td>
-          <td style="text-align: center;">
-          </td>
-        </tr>
-     <% } %>
-    </tbody>
-  </table>
+<form action="/logout?_method=DELETE" method="POST">
+  <button type="submit" class="button-23">Logout</button>
+</form>
+this is the data page
 
 <%- include('_footer.ejs') %>

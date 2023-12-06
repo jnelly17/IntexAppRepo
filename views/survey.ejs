@@ -258,42 +258,44 @@
         <option value="5">5</option>
     </select>
     <input type="hidden" id="location" name="location" value="Provo">
-</form>
-<p id="recorded" style="display: none;">Your response has been recorded! Thank you for your participation!</p>
-
     <div id="button">
-        <a href="#" class="button-23" role="button" onclick="submitForm()">Submit</a>
+        <button type="submit" class="button-23" onclick="submitForm()">Submit</a>
     </div>
+    </form>
+    <p id="recorded" style="display: none;">Your response has been recorded! Thank you for your participation!</p>
+
+
 </div>
 
 <script>
     function submitForm() {
         // Retrieve form data
-        q1 = document.getElementById("age").value;
-        q2 = document.getElementById("gender").value;
-        q3 = document.getElementById("relationStatus").value;
-        q4 = document.getElementById("occupStatus").value;
-        q5 = getSelectedValues();
-        q6 = document.getElementById("media").value;
-        q7 = getSelectedPlatforms();
-        q8 = document.getElementById("time").value;
-        q9 = document.getElementById("purpose").value;
-        q10 = document.getElementById("distractFreq").value;
-        q11 = document.getElementById("restless").value;
-        q12 = document.getElementById("distract").value;
-        q13 = document.getElementById("worries").value;
-        q14 = document.getElementById("concentrate").value;
-        q15 = document.getElementById("compare").value;
-        q16 = document.getElementById("feel").value;
-        q17 = document.getElementById("validation").value;
-        q18 = document.getElementById("down").value;
-        q19 = document.getElementById("interest").value;
-        q20 = document.getElementById("sleep").value;
-        loc = document.getElementById("location").value;
+        let time = new Date();
+        let q1 = document.getElementById("age").value;
+        let q2 = document.getElementById("gender").value;
+        let q3 = document.getElementById("relationStatus").value;
+        let q4 = document.getElementById("occupStatus").value;
+        let q5 = getSelectedValues();
+        let q6 = document.getElementById("media").value;
+        let q7 = getSelectedPlatforms();
+        let q8 = document.getElementById("time").value;
+        let q9 = document.getElementById("purpose").value;
+        let q10 = document.getElementById("distractFreq").value;
+        let q11 = document.getElementById("restless").value;
+        let q12 = document.getElementById("distract").value;
+        let q13 = document.getElementById("worries").value;
+        let q14 = document.getElementById("concentrate").value;
+        let q15 = document.getElementById("compare").value;
+        let q16 = document.getElementById("feel").value;
+        let q17 = document.getElementById("validation").value;
+        let q18 = document.getElementById("down").value;
+        let q19 = document.getElementById("interest").value;
+        let q20 = document.getElementById("sleep").value;
+        let loc = document.getElementById("location").value;
 
         document.getElementById("survey").style.display = "none"; // Change from hidden to style.display
         document.getElementById("recorded").style.display = "block"; // Change from hidden to style.display
-
+        document.getElementById("button").style.display = "none"; // Change from hidden to style.display
 
     }
 </script>
