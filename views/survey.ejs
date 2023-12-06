@@ -1,256 +1,303 @@
 <%- include('_header.ejs') %>
 
 <div id="content1" style="margin-top:10%;">
-
+    <br>
     <h1 style="color:black; margin-top:10%; padding-left: 40%;">Survey</h1>                   
 
-<form id="survey">
-<label for="age">Age:</label>
-<input type="number" name="age" id="age">
-<br>
-<br>
-<label for="gender">Gender:</label>
-<select name="gender" id="gender">
-<option value="M">Male</option>
-<option value="F">Female</option>
-<option value="O">Other</option>
-</select>
-<br>
-<br>
-<label for="relationStatus">Relationship Status:</label>
-<select name="relationStatus" id="relationStatus">
-<option value="single">Single</option>
-<option value="relation">In a relationship</option>
-<option value="married">Married</option>
-<option value="divorced">Divorced</option>
-</select>
-<br>
-<br>
-<label for="occupStatus">Occupation Status:</label>
-<select name="occupStatus" id="occupStatus">
-<option value="student">School student</option>
-<option value="university student">University Student</option>
-<option value="salaried worker">Salaried Worker</option>
-<option value="retired">Retired</option>
-<option value="unemployed">Unemployed</option>
-</select>
-<br>
-<br>
-<label for="affiliations">What type of organizations are you affiliated with? (select all/any that apply)</label>
-<select name="affiliations" id="affiliations" multiple>
-<option value="school">School</option>
-<option value="university">University</option>
-<option value="company">Company</option>
-<option value="private">Private Organization</option>
-</select>
-<br>
-<br>
-<label for="media">Do you use social media?</label>
-<select name="media" id="media">
-<option value="Yes">Yes</option>
-<option value="No">No</option>
-</select>
-<br>
-<br>
-<label for="platforms">What social media platforms do you commonly use? (select all/any that apply)</label>
-<select name="platforms" id="platforms" multiple>
-<option value="Facebook">Facebook</option>
-<option value="Instagram">Instagram</option>
-<option value="Snapchat">Snapchat</option>
-<option value="Tik Tok">Tik Tok</option>
-<option value="Pinterest">Pinterest</option>
-<option value="Reddit">Reddit</option>
-<option value="YouTube">YouTube</option>
-<option value="Discord">Discord</option>
-<option value="Twitter">Twitter</option>
-</select>
-<br>
-<br>
-<label for="time">What is the average time you spend on social media every day?</label>
-<input type="range" id="time" name="time" min="0" max="7" value="0">
-<span id="selectedValue">None</span>
+    <form id="survey" action="http://your-server-address:3000/submit-survey" method="post">
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" required>
+    <br>
+    <br>
+    <label for="gender">Gender:</label>
+    <select name="gender" id="gender" required>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+    </select>
+    <br>
+    <br>
+    <label for="relationStatus">Relationship Status:</label>
+    <select name="relationStatus" id="relationStatus" required>
+        <option value="single">Single</option>
+        <option value="relation">In a relationship</option>
+        <option value="married">Married</option>
+        <option value="divorced">Divorced</option>
+    </select>
+    <br>
+    <br>
+    <label for="occupStatus">Occupation Status:</label>
+    <select name="occupStatus" id="occupStatus" required>
+        <option value="student">School student</option>
+        <option value="university student">University Student</option>
+        <option value="salaried worker">Salaried Worker</option>
+        <option value="retired">Retired</option>
+        <option value="unemployed">Unemployed</option>
+    </select>
+    <br>
+    <br>
+    <fieldset>
+        <legend>What type of organizations are you affiliated with? (select all/any that apply)</legend>
+        
+        <input type="checkbox" id="school" name="affiliations[]" value="school">
+        <label for="school">School</label>
+        
+        <input type="checkbox" id="university" name="affiliations[]" value="university">
+        <label for="university">University</label>
+        
+        <input type="checkbox" id="company" name="affiliations[]" value="company">
+        <label for="company">Company</label>
+        
+        <input type="checkbox" id="private" name="affiliations[]" value="private">
+        <label for="private">Private Organization</label>
+    </fieldset>
+    <script>
+        function getSelectedValues() {
+            var selectedValues = [];
+            var checkboxes = document.getElementsByName('affiliations[]');
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    selectedValues.push(checkbox.value);
+                }
+        });
+
+        return selectedValues;
+    }
+    </script>
+    <br>
+    <br>
+    <label for="media">Do you use social media?</label>
+    <select name="media" id="media" required>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    </select>
+    <br>
+    <br>
+    <fieldset>
+        <legend>What social media platforms do you commonly use? (select all/any that apply)</legend>
+    
+        <input type="checkbox" id="facebook" name="platforms[]" value="Facebook">
+        <label for="facebook">Facebook</label>
+    
+        <input type="checkbox" id="instagram" name="platforms[]" value="Instagram">
+        <label for="instagram">Instagram</label>
+    
+        <input type="checkbox" id="snapchat" name="platforms[]" value="Snapchat">
+        <label for="snapchat">Snapchat</label>
+    
+        <input type="checkbox" id="tiktok" name="platforms[]" value="Tik Tok">
+        <label for="tiktok">Tik Tok</label>
+    
+        <input type="checkbox" id="pinterest" name="platforms[]" value="Pinterest">
+        <label for="pinterest">Pinterest</label>
+    
+        <input type="checkbox" id="reddit" name="platforms[]" value="Reddit">
+        <label for="reddit">Reddit</label>
+    
+        <input type="checkbox" id="youtube" name="platforms[]" value="YouTube">
+        <label for="youtube">YouTube</label>
+    
+        <input type="checkbox" id="discord" name="platforms[]" value="Discord">
+        <label for="discord">Discord</label>
+    
+        <input type="checkbox" id="twitter" name="platforms[]" value="Twitter">
+        <label for="twitter">Twitter</label>
+    </fieldset>
+    
+    <script>
+        // Function to get the selected values from the checkboxes
+        function getSelectedPlatforms() {
+            var selectedPlatforms = [];
+            var checkboxes = document.getElementsByName('platforms[]');
+    
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    selectedPlatforms.push(checkbox.value);
+                }
+            });
+    
+            return selectedPlatforms;
+        }
+    </script>
+    <br>
+    <br>
+    <label for="time">What is the average number of hours you spend on social media every day?</label>
+    <input type="range" id="time" name="time" min="0" max="5.5" value="0" step=".5" oninput="updateSliderValue(this.value)" required>
+    <span id="sliderValue">0</span> hours
+    
+    <script>
+    function updateSliderValue(value) {
+        const sliderValueElement = document.getElementById("sliderValue");
+    
+        if (value == 5.5) {
+            sliderValueElement.innerText = '5+';
+        } else {
+            sliderValueElement.innerText = value;
+        }
+    }
+    </script>
+    <br>
+    <br>
+    <label for="purpose">How often do you find youself using social media without a specific purpose? (scale of 1-5)</label>
+    <select name="purpose" id="purpose" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>        
+    <br>
+    <br>
+    <label for="distractFreq">How often do you get distracted by social media when you are busy doing something? (scale of 1-5)</label>
+    <select name="distractFreq" id="distractFreq" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="restless">Do you feel restless if you haven’t used social media in a while? (scale of 1-5)</label>
+    <select name="restless" id="restless" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="distract">How easily distracted are you? (scale of 1-5)</label>
+    <select name="disctract" id="distract" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="worries">How much are you bothered by worries? (scale of 1-5)</label>
+    <select name="worries" id="worries" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="concentrate">Do you find it difficult to concentrate on things? (scale of 1-5)</label>
+    <select name="concentrate" id="concentrate" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="compare">How often do you compare yourself to other successful people through the use of social media? (scale of 1-5)</label>
+    <select name="compare" id="compare" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="feel">Following the previous question, how do you feel about these comparisons, generally speaking? (scale of 1-5)</label>
+    <select name="feel" id="feel" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="validation">How often do you look to seek validation from features of social media? (scale of 1-5)</label>
+    <select name="validation" id="validation" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="down">How often do you feel depressed or down? (scale of 1-5)</label>
+    <select name="down" id="down" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="interest">How frequently does your interested in daily activities fluctuate? (scale of 1-5)</label>
+    <select name="interest" id="interest" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <br>
+    <label for="sleep">How often do you face issues regarding sleep? (scale of 1-5)</label>
+    <select name="sleep" id="sleep" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <input type="hidden" id="location" name="location" value="Provo">
+    </form>
+    <p id="recorded" style="display: none;">Your response has been recorded! Thank you for your participation!</p>
+
+    <div id="button">
+        <a href="#" class="button-23"  role="button" onclick="submitForm()">Submit</a>
+    </div>
+</div>
 
 <script>
-let slider = document.getElementById("time");
-let selectedValue = document.getElementById("selectedValue");
+    function submitForm() {
+        // Retrieve form data
+        let time = new Date();
+        let q1 = document.getElementById("age").value;
+        let q2 = document.getElementById("gender").value;
+        let q3 = document.getElementById("relationStatus").value;
+        let q4 = document.getElementById("occupStatus").value;
+        let q5 = getSelectedValues();
+        let q6 = document.getElementById("media").value;
+        let q7 = getSelectedPlatforms();
+        let q8 = document.getElementById("time").value;
+        let q9 = document.getElementById("purpose").value;
+        let q10 = document.getElementById("distractFreq").value;
+        let q11 = document.getElementById("restless").value;
+        let q12 = document.getElementById("distract").value;
+        let q13 = document.getElementById("worries").value;
+        let q14 = document.getElementById("concentrate").value;
+        let q15 = document.getElementById("compare").value;
+        let q16 = document.getElementById("feel").value;
+        let q17 = document.getElementById("validation").value;
+        let q18 = document.getElementById("down").value;
+        let q19 = document.getElementById("interest").value;
+        let q20 = document.getElementById("sleep").value;
+        let loc = document.getElementById("location").value;
 
-slider.addEventListener("input", function() {
-    let option = parseInt(slider.value);
+        document.getElementById("survey").style.display = "none"; // Change from hidden to style.display
+        document.getElementById("recorded").style.display = "block"; // Change from hidden to style.display
+        document.getElementById("button").style.display = "none"; // Change from hidden to style.display
 
-    switch (option) {
-        case 0:
-            selectedValue.textContent = "None";
-            break;
-        case 1:
-            selectedValue.textContent = "< 30 mins";
-            break;
-        case 2:
-            selectedValue.textContent = "30 mins - 1 hr";
-            break;
-        case 3:
-            selectedValue.textContent = "1 - 1.5 hours";
-            break;
-        case 4:
-            selectedValue.textContent = "1.5 - 2 hours";
-            break;
-        case 5:
-            selectedValue.textContent = "2 - 2.5 hours";
-            break;
-        case 6:
-            selectedValue.textContent = "2.5 - 3 hours";
-            break;
-        default:
-            break;
     }
-});
 </script>
-<br>
-<br>
-<label for="purpose">How often do you find youself usinh social media without a specific purpose? (scale of 1-5)</label>
-<select name="purpose" id="purpose">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="purpose">How often do you find youself using social media without a specific purpose? (scale of 1-5)</label>
-<select name="purpose" id="purpose">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>        
-<br>
-<br>
-<label for="distract">How often do you get distracted by social media when you are busy doing something? (scale of 1-5)</label>
-<select name="disctract" id="distract">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="restless">Do you feel restless if you haven’t used social media in a while? (scale of 1-5)</label>
-<select name="restless" id="restless">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="distract">How easily distracted are you? (scale of 1-5)</label>
-<select name="disctract" id="distract">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="distract">How easily distracted are you? (scale of 1-5)</label>
-<select name="disctract" id="distract">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="worries">How much are you bothered by worries? (scale of 1-5)</label>
-<select name="worries" id="worries">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="concentrate">Do you find it difficult to concentrate on things? (scale of 1-5)</label>
-<select name="concentrate" id="concentrate">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="compare">How often do you compare yourself to other successful people through the use of social media? (scale of 1-5)</label>
-<select name="compare" id="compare">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="feel">Following the previous question, how do you feel about these comparisons, generally speaking? (scale of 1-5)</label>
-<select name="feel" id="feel">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="validation">How often do you look to seek validation from features of social media? (scale of 1-5)</label>
-<select name="validation" id="validation">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="down">How often do you feel depressed or down? (scale of 1-5)</label>
-<select name="down" id="down">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="interest">How frequently does your interested in daily activities fluctuate? (scale of 1-5)</label>
-<select name="interest" id="interested">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<br>
-<br>
-<label for="sleep">How often do you face issues regarding sleep? (scale of 1-5)</label>
-<select name="sleep" id="sleep">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-<input type="hidden" id="location" name="location" value="Provo">
-</form>
 
-
-<div id="button">
-submit
-</div>
-</div>
 
 <%- include('_footer.ejs') %>

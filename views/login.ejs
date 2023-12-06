@@ -3,118 +3,28 @@
 <div id="loginContent" style="margin-top:15%;">
     <div>
         <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
-        <form>
-            <label for="username" style="text-align:left;">Username:</label>
-            <input type="text" id="username" name="username">
+        <% if (messages.error) {%>
+            <%= messages.error %>
+        <% } %>
+        <form action="/login" method="POST">
+            <label for="email" style="text-align:left;">Email:</label>
+            <input type="text" id="email" name="email">
             <br>
             <br>
             <label for="password" style="text-align:left;">Password:</label>
             <input type="password" id="password" name="password">
+            <br>
+            <div id="button">
+                <button type="submit" class="button-23">Login</a>
+            </div>
+            <p id="registrationLink">Unregistered administrator? <a href="register">Register</a></p>
         </form>
     </div>
-    <br>
-    <div id="button">
-        <a href="#" class="button-23" role="button" onclick="Login(document.getElementById('username').value, document.getElementById('password').value)">Login</a>
-    </div>
-    <p id="registrationLink">Don't have an account? <a href="#" onclick="showRegistrationForm()">Register</a></p>
 </div>
 
 <div id="footer01">
     <p2>&copy SMU UH  |  smuuh@gmail.com  |  555-555-5555  </p2>
 </div>
 
-<script>
-    function showRegistrationForm() {
-        var loginContent = document.getElementById("loginContent");
-        loginContent.innerHTML = `
-            <div>
-                <h1 style="text-align:left; margin-left:26.5%;">Register</h1>
-                <!-- Your registration form HTML goes here -->
-                <form>
-                    <label for="newUsername" style="text-align:left;">New Username:</label>
-                    <input type="text" id="newUsername" name="newUsername">
-                    <br>
-                    <br>
-                    <label for="newEmail" style="text-align:left;">Email:</label>
-                    <input type="text" id="newEmail" name="newEmail">
-                    <br>
-                    <br>
-                    <label for="newPassword" style="text-align:left;">New Password:</label>
-                    <input type="password" id="newPassword" name="newPassword">
-                </form>
-            </div>
-            <br>
-            <div id="button">
-                <a href="#" class="button-23" role="button" onclick="Register()">Register</a>
-            </div>
-            <p id="showLoginLink">Return to <a href="#" onclick="showLoginForm()">Login</a></p>
-        `;
-        document.getElementById("registrationLink").style.display = "none";
-    }
-
-    function showLoginForm() {
-        var loginContent = document.getElementById("loginContent");
-        loginContent.innerHTML = `
-            <div>
-                <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
-                <form>
-                    <label for="username" style="text-align:left;">Username:</label>
-                    <input type="text" id="username" name="username">
-                    <br>
-                    <br>
-                    <label for="password" style="text-align:left;">Password:</label>
-                    <input type="password" id="password" name="password">
-                </form>
-            </div>
-            <br>
-            <div id="button">
-                <a href="#" class="button-23" role="button" onclick="Login()">Login</a>
-            </div>
-            <p id="registrationLink">Don't have an account? <a href="#" onclick="showRegistrationForm()">Register</a></p>
-
-        `;
-        document.getElementById("registrationLink").style.display = "block";
-    }
-</script>
-
-<script>
-    let LogStatus = false;
-    localStorage.setItem("LogStatus", LogStatus);
-    
-    const { Client } = require('pg');
-
-    const client = new Client({
-    user: 'your_username',
-    host: 'your_host',
-    database: 'your_database',
-    password: 'your_password',
-    port: 5432,
-    });
-
-    // Function to check if a username and password combination is valid
-    async function Login(usernameToCheck, passwordToCheck) {
-    try {
-        await client.connect();
-
-        // Run the query to check if the username exists and the password matches
-        const result = await client.query('SELECT * FROM users WHERE username = $1 AND password = $2', [usernameToCheck, passwordToCheck]);
-
-        // Check if there is a record with the given username and password
-        if (result.rows.length === 0) {
-            alert("Invalid username or password");
-        // You can replace the console.log with an alert if you are running this in a browser environment
-        } else {
-            console.log("Valid credentials");
-            LogStatus = true;
-            localStorage.setItem("LogStatus", LogStatus);
-        // Perform other actions if the credentials are valid
-        }
-    } catch (error) {
-        console.error('Error executing query', error);
-    } finally {
-        await client.end();
-    }
-    }
-</script>
 </body>
 </html>
