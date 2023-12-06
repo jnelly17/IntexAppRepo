@@ -37,10 +37,10 @@ app.listen(app.get("port"), function (){
 const knex = require("knex")({
     client: "pg",
     connection: {
-        host: process.env.RDS_HOSTNAME || "awseb-e-53wyukr9vm-stack-awsebrdsdatabase-alks8s1h0aon.cg1vurwo0lnu.us-east-1.rds.amazonaws.com",
+        host: process.env.RDS_HOSTNAME || "localhost",
         user: process.env.RDS_USERNAME || "ebroot",
         password: process.env.RDS_PASSWORD || "ChickenJoe03",
-        database: process.env.RDS_DB_NAME || "AppData",
+        database: process.env.RDS_DB_NAME || "ebdb",
         port: process.env.RDS_PORT || 5432,
         ssl:process.env.DB_SSL ? {rejectUnauthorized: false} : false
     }
