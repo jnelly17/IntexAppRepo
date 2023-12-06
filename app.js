@@ -186,10 +186,15 @@ const knex = require("knex")({
 });
 
 // Route to fetch survey data
-app.get("/data", checkAuthenticated, (req, res) => {
-    knex.select().from("survey").then(survey => {
-        res.render("data", { mysurvey: survey });
-    });
+//app.get("/data", checkAuthenticated, (req, res) => {
+    //knex.select().from("survey").then(survey => {
+        //res.render("data", { mysurvey: survey });
+    //});
+//});
+
+router.get("/data", checkAuthenticated, (req, res) => {
+    console.log("data page active");
+    res.render("data");
 });
 
 function checkAuthenticated(req, res, next) {
@@ -197,12 +202,12 @@ function checkAuthenticated(req, res, next) {
         return next()
     }
 
-    res.redirect('/login')
+    res.redirect('login')
 }
 
 function checkNotAuthenticated(req, res, next){
     if (req.isAuthenticated()){
-        return res.redirect('/data')
+        return res.redirect('data')
     }
     next()
 }
