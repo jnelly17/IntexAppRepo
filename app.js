@@ -37,7 +37,7 @@ app.listen(app.get("port"), function (){
 const knex = require("knex")({
     client: "pg",
     connection: {
-        host: process.env.RDS_HOSTNAME || "localhost",
+        host: process.env.RDS_HOSTNAME || "awseb-e-53wyukr9vm-stack-awsebrdsdatabase-alks8s1h0aon.cg1vurwo0lnu.us-east-1.rds.amazonaws.com",
         user: process.env.RDS_USERNAME || "ebroot",
         password: process.env.RDS_PASSWORD || "ChickenJoe03",
         database: process.env.RDS_DB_NAME || "AppData",
