@@ -38,9 +38,9 @@ const knex = require("knex")({
     client: "pg",
     connection: {
         host: process.env.RDS_HOSTNAME || "localhost",
-        user: process.env.RDS_USERNAME || "postgres", //only ebroot has access to appdata
-        password: process.env.RDS_PASSWORD || "password",
-        database: process.env.RDS_DB_NAME || "IntexPractice",
+        user: process.env.RDS_USERNAME || "ebroot",
+        password: process.env.RDS_PASSWORD || "ChickenJoe03",
+        database: process.env.RDS_DB_NAME || "AppData",
         port: process.env.RDS_PORT || 5432,
         ssl:process.env.DB_SSL ? {rejectUnauthorized: false} : false
     }
