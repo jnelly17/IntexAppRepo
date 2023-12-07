@@ -34,9 +34,9 @@ app.use(bodyParser.json());
 // PostgreSQL database connection pool
 const pool = new Pool({
     user: process.env.DB_USERNAME || 'postgres',
-    host: process.env.DB_HOST || 'localhost',
-    database: process.env.DB_NAME || 'NormalizationTest',
-    password: process.env.DB_PASSWORD || 'password',
+    host: process.env.DB_HOST || 'ebroot',
+    database: process.env.DB_NAME || 'ebdb',
+    password: process.env.DB_PASSWORD || 'ChickenJoe03',
     port: process.env.RDS_PORT || 5432,
 });
 
