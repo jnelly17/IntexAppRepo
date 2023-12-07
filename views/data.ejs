@@ -4,9 +4,75 @@
 <br>
 <br>
 <br>
-<form action="/logout?_method=DELETE" method="POST">
+<form action="/logout" method="GET">
   <button type="submit" class="button-23">Logout</button>
 </form>
-this is the data page
-
+<div id="content1" style="margin-top:10%">
+    <form action="/filter" method="GET">
+        <label for="surveyNum">Input the number you would like to see the record for:</label>
+        <input type="number" name="surveyNum" id="surveyNum" required>
+        <button type="submit">Filter</button>
+    </form>
+</div>
+<table style="width: 100%; background-color: antiquewhite; border: 1px solid black;">
+  <thead style="background-color: cornflowerblue; color: white;">
+    <tr>
+      <th style="text-align:left;">Survey Time</th>
+      <th style="text-align: left;">Survey Number</th>
+      <th style="text-align: left;">City</th>
+      <th style="text-align: left;">Age</th>
+      <th style="text-align: left;">Gender</th>
+      <th style="text-align: left;">Relationship</th>
+      <th style="text-align: left;">Occupation</th>
+      <th style="text-align: left;">Organizations</th>
+      <th style="text-align: left;">UseSocial</th>
+      <th style="text-align: left;">Platforms</th>
+      <th style="text-align: left;">Q8INT</th>
+      <th style="text-align: left;">Q9</th>
+      <th style="text-align: left;">Q10</th>
+      <th style="text-align: left;">Q11</th>
+      <th style="text-align: left;">Q12</th>
+      <th style="text-align: left;">Q13</th>
+      <th style="text-align: left;">Q14</th>
+      <th style="text-align: left;">Q15</th>
+      <th style="text-align: left;">Q16</th>
+      <th style="text-align: left;">Q17</th>
+      <th style="text-align: left;">Q18</th>
+      <th style="text-align: left;">Q19</th>
+      <th style="text-align: left;">Q20</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody style="font-family: Arial; font-size: 9pt;">
+   <% for (let iCount = 0; iCount < mysurvey.length; iCount++) { %>
+      <tr>
+        <td><%= mysurvey[iCount].SurveyTime %></td>
+        <td><%= mysurvey[iCount].SurveyNumber %></td>
+        <td><%= mysurvey[iCount].City %></td>
+        <td><%= mysurvey[iCount].Age %></td>
+        <td><%= mysurvey[iCount].Gender %></td>
+        <td><%= mysurvey[iCount].Relationship %></td>
+        <td><%= mysurvey[iCount].Occupation %></td>
+        <td><%= mysurvey[iCount].organizations %></td>
+        <td><%= mysurvey[iCount].UseSocial %></td>
+        <td><%= mysurvey[iCount].platforms %></td>
+        <td><%= mysurvey[iCount].Q8INT %></td>
+        <td><%= mysurvey[iCount].Q9 %></td>
+        <td><%= mysurvey[iCount].Q10 %></td>
+        <td><%= mysurvey[iCount].Q11 %></td>
+        <td><%= mysurvey[iCount].Q12 %></td>
+        <td><%= mysurvey[iCount].Q13 %></td>
+        <td><%= mysurvey[iCount].Q14 %></td>
+        <td><%= mysurvey[iCount].Q15 %></td>
+        <td><%= mysurvey[iCount].Q16 %></td>
+        <td><%= mysurvey[iCount].Q17 %></td>
+        <td><%= mysurvey[iCount].Q18 %></td>
+        <td><%= mysurvey[iCount].Q19 %></td>
+        <td><%= mysurvey[iCount].Q20 %></td>
+        </td>
+      </tr>
+   <% } %>
+  </tbody>
+</table>
 <%- include('_footer.ejs') %>

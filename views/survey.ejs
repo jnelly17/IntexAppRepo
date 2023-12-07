@@ -4,7 +4,7 @@
     <br>
     <h1 style="color:black; margin-top:10%; padding-left: 40%;">Survey</h1>                   
 
-    <form id="survey" action="http://your-server-address:3000/submit-survey" method="post">
+    <form id="survey" action="/submitForm" method="POST">
     <label for="age">Age:</label>
     <input type="number" name="age" id="age" required>
     <br>
@@ -39,32 +39,18 @@
     <fieldset>
         <legend>What type of organizations are you affiliated with? (select all/any that apply)</legend>
         
-        <input type="checkbox" id="school" name="affiliations[]" value="school">
+        <input type="checkbox" id="school" name="affiliations" value="school">
         <label for="school">School</label>
         
-        <input type="checkbox" id="university" name="affiliations[]" value="university">
+        <input type="checkbox" id="university" name="affiliations" value="university">
         <label for="university">University</label>
         
-        <input type="checkbox" id="company" name="affiliations[]" value="company">
+        <input type="checkbox" id="company" name="affiliations" value="company">
         <label for="company">Company</label>
         
-        <input type="checkbox" id="private" name="affiliations[]" value="private">
+        <input type="checkbox" id="private" name="affiliations" value="private">
         <label for="private">Private Organization</label>
     </fieldset>
-    <script>
-        function getSelectedValues() {
-            var selectedValues = [];
-            var checkboxes = document.getElementsByName('affiliations[]');
-
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    selectedValues.push(checkbox.value);
-                }
-        });
-
-        return selectedValues;
-    }
-    </script>
     <br>
     <br>
     <label for="media">Do you use social media?</label>
@@ -77,49 +63,33 @@
     <fieldset>
         <legend>What social media platforms do you commonly use? (select all/any that apply)</legend>
     
-        <input type="checkbox" id="facebook" name="platforms[]" value="Facebook">
+        <input type="checkbox" id="facebook" name="platforms" value="Facebook">
         <label for="facebook">Facebook</label>
     
-        <input type="checkbox" id="instagram" name="platforms[]" value="Instagram">
+        <input type="checkbox" id="instagram" name="platforms" value="Instagram">
         <label for="instagram">Instagram</label>
     
-        <input type="checkbox" id="snapchat" name="platforms[]" value="Snapchat">
+        <input type="checkbox" id="snapchat" name="platforms" value="Snapchat">
         <label for="snapchat">Snapchat</label>
     
-        <input type="checkbox" id="tiktok" name="platforms[]" value="Tik Tok">
+        <input type="checkbox" id="tiktok" name="platforms" value="Tik Tok">
         <label for="tiktok">Tik Tok</label>
     
-        <input type="checkbox" id="pinterest" name="platforms[]" value="Pinterest">
+        <input type="checkbox" id="pinterest" name="platforms" value="Pinterest">
         <label for="pinterest">Pinterest</label>
     
-        <input type="checkbox" id="reddit" name="platforms[]" value="Reddit">
+        <input type="checkbox" id="reddit" name="platforms" value="Reddit">
         <label for="reddit">Reddit</label>
     
-        <input type="checkbox" id="youtube" name="platforms[]" value="YouTube">
+        <input type="checkbox" id="youtube" name="platforms" value="YouTube">
         <label for="youtube">YouTube</label>
     
-        <input type="checkbox" id="discord" name="platforms[]" value="Discord">
+        <input type="checkbox" id="discord" name="platforms" value="Discord">
         <label for="discord">Discord</label>
     
-        <input type="checkbox" id="twitter" name="platforms[]" value="Twitter">
+        <input type="checkbox" id="twitter" name="platforms" value="Twitter">
         <label for="twitter">Twitter</label>
     </fieldset>
-    
-    <script>
-        // Function to get the selected values from the checkboxes
-        function getSelectedPlatforms() {
-            var selectedPlatforms = [];
-            var checkboxes = document.getElementsByName('platforms[]');
-    
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    selectedPlatforms.push(checkbox.value);
-                }
-            });
-    
-            return selectedPlatforms;
-        }
-    </script>
     <br>
     <br>
     <label for="time">What is the average number of hours you spend on social media every day?</label>
@@ -170,7 +140,7 @@
     <br>
     <br>
     <label for="distract">How easily distracted are you? (scale of 1-5)</label>
-    <select name="disctract" id="distract" required>
+    <select name="distract" id="distract" required>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -270,35 +240,14 @@
 <script>
     function submitForm() {
         // Retrieve form data
-        let time = new Date();
-        let q1 = document.getElementById("age").value;
-        let q2 = document.getElementById("gender").value;
-        let q3 = document.getElementById("relationStatus").value;
-        let q4 = document.getElementById("occupStatus").value;
-        let q5 = getSelectedValues();
-        let q6 = document.getElementById("media").value;
-        let q7 = getSelectedPlatforms();
-        let q8 = document.getElementById("time").value;
-        let q9 = document.getElementById("purpose").value;
-        let q10 = document.getElementById("distractFreq").value;
-        let q11 = document.getElementById("restless").value;
-        let q12 = document.getElementById("distract").value;
-        let q13 = document.getElementById("worries").value;
-        let q14 = document.getElementById("concentrate").value;
-        let q15 = document.getElementById("compare").value;
-        let q16 = document.getElementById("feel").value;
-        let q17 = document.getElementById("validation").value;
-        let q18 = document.getElementById("down").value;
-        let q19 = document.getElementById("interest").value;
-        let q20 = document.getElementById("sleep").value;
-        let loc = document.getElementById("location").value;
-
         document.getElementById("survey").style.display = "none"; // Change from hidden to style.display
         document.getElementById("recorded").style.display = "block"; // Change from hidden to style.display
         document.getElementById("button").style.display = "none"; // Change from hidden to style.display
 
     }
 </script>
+
+<script src="/app.js"></script>
 
 
 <%- include('_footer.ejs') %>
