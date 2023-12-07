@@ -326,57 +326,89 @@ body, html {
 
 
 
-/* Style the form container */
+/* CSS for the form */
+/* Apply basic styles to the form */
 #survey {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
-    background-color:rgb(255, 255, 255);
-    border-radius: 5px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-}
-
-/* Style labels and form elements */
-label {
+  }
+  
+  /* Apply styles to labels */
+  label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
-}
-
-input, select {
+  }
+  
+  /* Apply styles to input fields and selects */
+  input[type="number"],
+  select,
+  input[type="range"] {
     width: 100%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     box-sizing: border-box;
+  }
+  
+  /* Apply styles to checkboxes and radio buttons */
+/* Apply styles to checkboxes and radio buttons within the fieldset */
+fieldset input[type="checkbox"],
+fieldset input[type="radio"] {
+  margin-right: 5px;
 }
 
-select[multiple] {
-    height: auto;
+/* Apply styles to labels associated with checkboxes and radio buttons */
+fieldset label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 5px; /* Adjust the spacing between each label-checkbox pair */
 }
 
-/* Style the range input and its value display */
-input[type="range"] {
-    width: 80%;
-}
-
-#selectedValue {
-    display: inline-block;
-    margin-left: 10px;
+  
+  legend {
     font-weight: bold;
-}
+  }
+  
+  /* Apply styles to the submit button */
+  
+  /* Apply styles to hidden fields */
+  input[type="hidden"] {
+    display: none;
+  }
+  
+  /* Apply styles to the slider and slider value */
+  #time {
+    width: 80%;
+  }
+  
+  /* Apply styles to the slider value span */
+  #sliderValue {
+    display: inline-block;
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  
+  /* Apply styles to the error message (if any) */
+  #error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
 
-/* Style the submit button */
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
+
+  #content2{
+    background-color: white;
+    width:60%;
+    margin-left: 20%;
+    margin-right: 1%;
+    border-radius: 10px; /* You can adjust the value to control the amount of rounding */
+    opacity: 0.85;
+    margin-bottom: 3%;
+  }
