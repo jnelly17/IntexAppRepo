@@ -96,7 +96,7 @@ app.post("/submitForm", async (req, res) => {
             console.error("uh oh organization", error)
         }
 
-        const Q7 = req.body.affiliations;
+        const Q7 = req.body.platforms;
         if (Q7 == null){
             Q7 = ['N/A'];
         }
