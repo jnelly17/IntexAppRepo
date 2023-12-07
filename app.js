@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const pool = new Pool({
     user: process.env.DB_USERNAME || 'postgres',
     host: process.env.DB_HOST || 'localhost',
-    database: process.env.DB_NAME || 'IntexPractice',
+    database: process.env.DB_NAME || 'NormalizationTest',
     password: process.env.DB_PASSWORD || 'password',
     port: process.env.DB_PORT || 5432,
 });
@@ -42,16 +42,14 @@ const pool = new Pool({
 // Define route for form submission
 app.post('/submitForm', (req, res) => {
     // Extract form data from the request
-    const { time, loc, q1, q2, q3, q4, q5, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20 } = req.body;
-
+    const { time, loc, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20 } = req.body;
     // First Query
     const query = `
-        INSERT INTO Survey (SurveyTime, City, Age, Gender, Relationship, Occupation, UseSocial, Q8INT, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
-    `;
-
-    const values = [time, loc, q1, q2, q3, q4, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20];
-
+            INSERT INTO Survey (SurveyTime, City, Age, Gender, Relationship, Occupation, UseSocial, Q8INT, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
+            Returning SurveyNumber
+        `;
+    const values = {time, loc, q1, q2, q3, q4, q6, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20};
     // Execute the first query
         pool.query(query, values, async (error, results) => {
         if (error) {
@@ -59,41 +57,34 @@ app.post('/submitForm', (req, res) => {
             res.status(500).send('Internal Server Error');
         } else {
             // Second Query
-            const query2 = 'INSERT INTO Organization (OrgNum, Q5) VALUES ($1, $2)';
+            const query2 = 'INSERT INTO Organization (SurveyNumber, OrgNum, Q5) VALUES ($1, $2, $3)';
             const pool2 = pool;
-            
             await pool2.connect();
             for (let i = 0; i < q5.length; i++) {
                 const orgNum = i + 1;
                 const org = q5[i];
-                const values2 = [orgNum, org];
+                const values2 = [results, orgNum, org];
                 await pool2.query(query2, values2);
             }
-
             // Release pool2
             pool2.release();
-
             // Third Query
-            const query3 = 'INSERT INTO Platform (PlatNum, Q7) VALUES ($1, $2)';
+            const query3 = 'INSERT INTO Platform (SurveyNumber, PlatNum, Q7) VALUES ($1, $2, $3)';
             const pool3 = pool;
-
             await pool3.connect();
             for (let i = 0; i < q7.length; i++) {
                 const PlatNum = i + 1;
                 const plat = q7[i];
-                const values3 = [PlatNum, plat];
+                const values3 = [results, PlatNum, plat];
                 await pool3.query(query3, values3);
             }
-
             // Release pool3
             pool3.release();
-
             console.log('Records inserted successfully.');
             res.status(200).send('Survey submitted successfully!');
         }
     });
 });
-
 // Configure views and static files
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -179,7 +170,7 @@ const knex = require("knex")({
         host: process.env.RDS_HOSTNAME || "localhost",
         user: process.env.RDS_USERNAME || "postgres",
         password: process.env.RDS_PASSWORD || "password",
-        database: process.env.RDS_DB_NAME || "IntexPoop",
+        database: process.env.RDS_DB_NAME || "NormalizationTest",
         port: process.env.RDS_PORT || 5432,
         ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false
     }
