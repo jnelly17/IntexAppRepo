@@ -117,7 +117,6 @@ app.post("/submitForm", async (req, res) => {
             console.error("uh oh biggie mistake in the platforms", error)
         }
 
-        res.status(200).json({ success: true, message: "Form submitted successfully" });
     } catch (error) {
         console.error("Error submitting form:", error);
         res.status(500).json({ success: false, message: "Internal Server Error" });
