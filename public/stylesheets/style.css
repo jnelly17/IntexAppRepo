@@ -383,7 +383,7 @@ body, html {
   }
   
   .styled-table.show {
-    margin-top: 0%; /* Slide up into view */
+    margin-top: 10%; /* Slide up into view */
   }
 
 
