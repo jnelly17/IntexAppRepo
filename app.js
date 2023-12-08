@@ -253,13 +253,13 @@ app.get('/filter', checkAuthenticated, (req, res) => {
   )
   .select('*').from('Survey AS s')
   .where('s.SurveyNumber', selectedSurvey)
-  .then( async survey => {
+  .then(async survey => {
     console.log("I work", survey)
     const highSurvey = await knex("Survey").max("SurveyNumber").first();
     console.log(highSurvey);
     res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: highSurvey['max'] });
 });
-console.log(selectedSurvey);''
+console.log(selectedSurvey);
 })
 
 app.get("/data", checkAuthenticated, async (req, res) => {
