@@ -536,6 +536,7 @@ fieldset label {
     min-width: 400px;
     box-shadow: 0 0 20px rgba(179, 179, 179, 0.938);
     animation: slideUP 1s ease-in-out forwards;
+    height:100%;
   }
   
   @keyframes slideUP {
