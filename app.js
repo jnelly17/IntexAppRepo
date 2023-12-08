@@ -80,7 +80,7 @@ app.post("/submitForm", async (req, res) => {
 
         //here we pull the Q5 array from the request body
         //if there are no strings then the value is N/A
-        const Q5 = req.body.affiliations;
+        let Q5 = req.body.affiliations;
         if (Q5 == null){
             Q5 = ['N/A'];
         }
@@ -104,7 +104,7 @@ app.post("/submitForm", async (req, res) => {
         }
 
         //repeat for the next array
-        const Q7 = req.body.platforms;
+        let Q7 = req.body.platforms;
         if (Q7 == null){
             Q7 = ['N/A'];
         }
