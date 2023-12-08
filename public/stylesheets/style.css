@@ -63,6 +63,10 @@ li a:hover{
     cursor:grab/pointer;
 }
 
+#provoLogo:hover{
+    cursor:grab/pointer;
+}
+
 #logo #sublogo{
     font-size: 10px;
     padding-left: 2%;
