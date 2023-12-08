@@ -699,17 +699,7 @@ li {
   line-height: 20px;
 }
 
-#helplist:before {
-    content: '';
-    display: block;
-    height: 42px;
-    width: 42px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
-    position: absolute; 
-    top: -12px;
-    left: -46px;
-}
+
 
 
 strong { color: #292929; }
