@@ -283,7 +283,7 @@ app.get("/data", checkAuthenticated, async (req, res) => {
       console.log("I work", survey);
   
       const topSurvey = await knex("Survey").max("SurveyNumber").first();
-  
+      console.log(topSurvey);
       res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: topSurvey });
     } catch (error) {
       console.error("Error fetching data:", error);
