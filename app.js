@@ -181,7 +181,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     const testEmail = req.body.email;
     const exist = users.find(users => users.email === testEmail)
     if (exist) {
-        req.flash('error', 'Account with this email already exists');
+        req.flash('error', 'Account with this email already exists.');
         res.redirect('/register')
     }else{
         try{
