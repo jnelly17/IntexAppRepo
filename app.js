@@ -11,7 +11,11 @@ const bcrypt = require('bcrypt');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override')
-const users = [];
+const users = [{
+    username: 'smuuhAdmin',
+    email: 'smuuh@gmail.com',
+    password: 'ChickenJoe'
+    }];
 
 //gotta use passport for the password hashing
 const passport = require('passport');
