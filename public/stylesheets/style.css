@@ -378,12 +378,12 @@ body, html {
   }
   
   .styled-table {
-    margin-top: 150%; /* Start off-screen */
+    margin-top: -100%;
     transition: margin-top 1.5s ease-in-out;
   }
   
   .styled-table.show {
-    margin-top: 0%; /* Slide up into view */
+    margin-top: 0%;
   }
 
 
