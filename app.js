@@ -175,6 +175,10 @@ router.get("/register",checkNotAuthenticated, (req, res) => {
     res.render("register");
 });
 
+router.get("/help",checkNotAuthenticated, (req, res) => {
+    console.log("help page active");
+    res.render("help");
+});
 
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: 'data',
