@@ -181,8 +181,8 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     const testEmail = req.body.email;
     const exist = users.find(users => users.email === testEmail)
     if (exist) {
+        req.flash('error', 'Account with this email already exists');
         res.redirect('/register')
-        alert('User already exists.')
     }else{
         try{
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
