@@ -373,6 +373,18 @@ body, html {
 }
 
 
+.table-container {
+    overflow: hidden;
+  }
+  
+  .styled-table {
+    margin-top: 100%; /* Start off-screen */
+    transition: margin-top 1.5s ease-in-out;
+  }
+  
+  .styled-table.show {
+    margin-top: 30%; /* Slide up into view */
+  }
 
 
 
