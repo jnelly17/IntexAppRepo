@@ -377,15 +377,6 @@ body, html {
     overflow: hidden;
   }
   
-  .styled-table {
-    margin-top: -100%;
-    transition: margin-top 1.5s ease-in-out;
-  }
-  
-  .styled-table.show {
-    margin-top: 0%;
-  }
-
 
 
 
@@ -543,7 +534,17 @@ fieldset label {
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(179, 179, 179, 0.938);
-}
+    animation: slideUP 1s ease-in-out forwards;
+  }
+  
+  @keyframes slideUP {
+    from {
+      top: -100%;
+    }
+    to {
+      top: 0%;
+    }
+  }
 .styled-table thead tr {
     background-color: #000000;
     color: #fffffff0;
