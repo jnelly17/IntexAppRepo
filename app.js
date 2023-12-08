@@ -250,7 +250,7 @@ app.get('/filter', checkAuthenticated, (req, res) => {
   .where('s.SurveyNumber', selectedSurvey)
   .then(survey => {
     console.log("I work", survey)
-    res.render("data", { mysurvey: survey });
+    res.render("data", { mysurvey: survey, username: req.user.username });
 });
 console.log(selectedSurvey);''
 })
