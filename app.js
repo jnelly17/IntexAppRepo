@@ -283,8 +283,8 @@ app.get("/data", checkAuthenticated, async (req, res) => {
       console.log("I work", survey);
   
       const highSurvey = await knex("Survey").max("SurveyNumber").first();
-      console.log(topSurvey);
-      res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: highSurvey['max'] });
+      console.log(highSurvey);
+      res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: highSurvey });
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error appropriately, e.g., send an error response to the client
