@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
-// Import necessary modules
+// Import necessary modules for doing all the stuff
 const express = require("express");
 const path = require("path");
 const { Pool } = require('pg');
@@ -13,7 +13,7 @@ const session = require('express-session');
 const methodOverride = require('method-override')
 const users = [];
 
-
+//gotta use passport for the password hashing
 const passport = require('passport');
 const initializePassport = require('./passport-config');
 initializePassport(
@@ -40,6 +40,8 @@ const pool = new Pool({
     port: process.env.RDS_PORT || 5432,
 });
 
+//this one is pretty big, a post method that is called when the survey is submitted
+//essentially she is designed as an async function that pulls all of the user input from the form
 app.post("/submitForm", async (req, res) => {
     try {
         const surveyData = {
@@ -65,7 +67,7 @@ app.post("/submitForm", async (req, res) => {
             Q20: req.body.sleep,
         };
 
-        // Insert survey data into the database
+        // then she inserts the survey into the database
         const insertedSurvey = await knex("Survey").insert(surveyData).returning("*");
 
         // Log the inserted survey data to make sure that it is right
@@ -76,12 +78,16 @@ app.post("/submitForm", async (req, res) => {
         //check that shiz in the console
         console.log("Max Survey Number:", maxSurveyNumber);
 
+        //here we pull the Q5 array from the request body
+        //if there are no strings then the value is N/A
         const Q5 = req.body.affiliations;
         if (Q5 == null){
             Q5 = ['N/A'];
         }
         console.log(Q5);
 
+        //here we are going to insert a new record into the organization database 
+        //for every affiliation that the user has indicated that they have
         try{
             for (let i = 0; i < Q5.length; i++) {
                 const orgdata = {
@@ -89,6 +95,7 @@ app.post("/submitForm", async (req, res) => {
                     SurveyNumber: maxSurveyNumber['max'],
                     Q5: Q5[i]
                 }
+                //here is the actual query to add the records and indicate its success
                 const inserteddata = await knex("Organization").insert(orgdata).returning("*");
                 console.log("Data successfully inserted into Organization table)",inserteddata)
             }
@@ -96,6 +103,7 @@ app.post("/submitForm", async (req, res) => {
             console.error("uh oh organization", error)
         }
 
+        //repeat for the next array
         const Q7 = req.body.platforms;
         if (Q7 == null){
             Q7 = ['N/A'];
@@ -130,8 +138,13 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
+//middleware to parse dat data if it be URL encoded
 app.use(express.urlencoded({ extended: false}))
+
+//gotta handle those flash messages 
 app.use(flash())
+
+//session middleware for login/password stuff
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -150,65 +163,92 @@ router.get("/", (req, res) => {
     res.render("index");
 });
 
+//survey route
 router.get("/survey", (req, res) => {
     console.log("survey page active");
     res.render("survey");
 });
 
+//awareness route
 router.get("/awareness", (req, res) => {
     console.log("awareness page active");
     res.render("awareness");
 });
 
+//privacy route
 router.get("/privacy", (req, res) => {
     console.log("privacy page active");
     res.render("privacy");
 });
 
+//login page route
 router.get("/login", checkNotAuthenticated, (req, res) => {
     console.log("login page active");
     res.render("login");
 });
 
+// register page route
 router.get("/register",checkNotAuthenticated, (req, res) => {
     console.log("register page active");
     res.render("register");
 });
 
+
+// help page route
 router.get("/help",checkNotAuthenticated, (req, res) => {
     console.log("help page active");
     res.render("help");
 });
 
+
+//login method route, gotta make sure they're not already logged in
+//direct them wherever they're supposed to be
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: 'data',
     failureRedirect: 'login',
     failureFlash: true
 }))
 
+//
+// Handle POST requests to the '/register' endpoint
 app.post('/register', checkNotAuthenticated, async (req, res) => {
+    
+    // Extract the email from the request body
     const testEmail = req.body.email;
-    const exist = users.find(users => users.email === testEmail)
+
+    // Check if the email already exists in the 'users' array
+    const exist = users.find(user => user.email === testEmail);
+
+    // If the email already exists, show an error flash message and redirect to the registration page
     if (exist) {
         req.flash('error', 'Account with this email already exists.');
-        res.redirect('/register')
-    }else{
-        try{
+        res.redirect('/register');
+    } else {
+        try {
+            // Hash the password using bcrypt with a cost factor of 10
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+            // Create a new user object and add it to the 'users' array
             users.push({
                 id: Date.now().toString(),
                 username: req.body.username,
                 email: req.body.email,
                 password: hashedPassword
-            })
-            res.redirect('/login')
-        } catch{
-            res.redirect('/register')
+            });
+
+            // Redirect to the login page upon successful registration
+            res.redirect('/login');
+        } catch (error) {
+            // If an error occurs during the registration process, redirect to the registration page
+            res.redirect('/register');
         }
+
+        // Log the 'users' array to the console (this line will execute regardless of success or failure)
         console.log(users);
     }
-})
+});
 
+//make it so that the logout button works
 app.get('/logout', function (req, res) {
     req.logout(function(err) {
         if (err) {
@@ -236,7 +276,7 @@ const knex = require("knex")({
     }
 });
 
-// Route to fetch survey and organization data
+// Route to fetch survey and organization data for when the admins filter the data on the page
 app.get('/filter', checkAuthenticated, (req, res) => {
     const selectedSurvey = req.query.surveyNum;
     knex('Survey AS s')
@@ -264,6 +304,11 @@ app.get('/filter', checkAuthenticated, (req, res) => {
 console.log(selectedSurvey);''
 })
 
+
+//route to fetch the data so that all of it can be displayed on the page
+// also the data is being DE-delimited (or should i say DE-normalized)
+//this is so that the data page is more readable for the user
+//reject access if they not logged in
 app.get("/data", checkAuthenticated, (req, res) => {
 knex('Survey AS s')
   .innerJoin(
@@ -289,7 +334,7 @@ knex('Survey AS s')
 });
 
 
-
+//check if they logged in
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()){
         return next()
@@ -298,6 +343,7 @@ function checkAuthenticated(req, res, next) {
     res.redirect('login')
 }
 
+//check if they not logged in
 function checkNotAuthenticated(req, res, next){
     if (req.isAuthenticated()){
         return res.redirect('data')
