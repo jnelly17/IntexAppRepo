@@ -127,7 +127,7 @@ h1{
 #content1{
     background-color: white;
     width:70%;
-    margin-left: 15%;
+    margin-left: 0%;
     margin-right: 1%;
     border-radius: 10px; /* You can adjust the value to control the amount of rounding */
     opacity: 0.9;
