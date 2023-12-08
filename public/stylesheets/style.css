@@ -102,6 +102,17 @@ h1{
 
 }
 
+#helpcontent{
+    background-color: white;
+    width:98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 10px; /* You can adjust the value to control the amount of rounding */
+    opacity: 0.9;
+    margin-bottom: 3%;
+
+}
+
 #privateText{
     background-color: white;
     width:80%;
