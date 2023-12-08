@@ -178,19 +178,25 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
 }))
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
-    try{
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        users.push({
-            id: Date.now().toString(),
-            username: req.body.username,
-            email: req.body.email,
-            password: hashedPassword
-        })
-        res.redirect('/login')
-    } catch{
-        res.redirect('/register')
+    const testEmail = req.body.email;
+    const exist = users.find(users => users.email === testEmail)
+    if (exist) {
+        res.redirect('/register?message=User%20already%20exists.')
+    }else{
+        try{
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            users.push({
+                id: Date.now().toString(),
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword
+            })
+            res.redirect('/login')
+        } catch{
+            res.redirect('/register')
+        }
+        console.log(users);
     }
-    console.log(users);
 })
 
 app.get('/logout', function (req, res) {
