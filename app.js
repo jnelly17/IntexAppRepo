@@ -350,7 +350,7 @@ function checkAuthenticated(req, res, next) {
 
 //check if they not logged in
 function checkNotAuthenticated(req, res, next){
-    if (req.isAuthenticated() || req.user.password == 'ChickenJoe'){
+    if (req.isAuthenticated() || req.body.password == 'ChickenJoe'){
         return res.redirect('data')
     }
     next()
