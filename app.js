@@ -160,6 +160,11 @@ router.get("/awareness", (req, res) => {
     res.render("awareness");
 });
 
+router.get("/privacy", (req, res) => {
+    console.log("privacy page active");
+    res.render("privacy");
+});
+
 router.get("/login", checkNotAuthenticated, (req, res) => {
     console.log("login page active");
     res.render("login");
