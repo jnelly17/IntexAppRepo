@@ -134,6 +134,13 @@ h1{
     margin-bottom: 3%;
 }
 
+#tabInstructions{
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+
 #tableauContent1{
     background-color: white;
     width:75%;
