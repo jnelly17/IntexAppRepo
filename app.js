@@ -274,7 +274,7 @@ knex('Survey AS s')
   )
   .select('*').from('Survey AS s').then(survey => {
     console.log("I work", survey)
-    res.render("data", { mysurvey: survey }, {username: req.user.username});
+    res.render("data", { mysurvey: survey });
 });
 });
 
