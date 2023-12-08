@@ -253,9 +253,11 @@ app.get('/filter', checkAuthenticated, (req, res) => {
   )
   .select('*').from('Survey AS s')
   .where('s.SurveyNumber', selectedSurvey)
-  .then(survey => {
+  .then( async survey => {
     console.log("I work", survey)
-    res.render("data", { mysurvey: survey, username: req.user.username });
+    const highSurvey = await knex("Survey").max("SurveyNumber").first();
+    console.log(highSurvey);
+    res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: highSurvey['max'] });
 });
 console.log(selectedSurvey);''
 })
@@ -282,9 +284,8 @@ app.get("/data", checkAuthenticated, async (req, res) => {
   
       console.log("I work", survey);
   
-      const highSurvey = await knex("Survey").max("SurveyNumber").first();
-      console.log(highSurvey);
-      res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: highSurvey });
+
+      res.render("data", { mysurvey: survey, username: req.user.username });
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error appropriately, e.g., send an error response to the client
