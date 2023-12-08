@@ -435,3 +435,49 @@ fieldset label {
     opacity: 0.85;
     margin-bottom: 3%;
   }
+
+  #loginStuff {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#loginStuff h1 {
+    text-align: left;
+    margin-left: 26.5%;
+    color: #333;
+}
+
+#loginStuff form {
+    text-align: left;
+}
+
+#loginStuff label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#loginStuff input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#loginStuff #registrationLink {
+    margin-top: 10px;
+}
+
+#loginStuff #registrationLink a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+#loginStuff #registrationLink a:hover {
+    text-decoration: underline;
+}

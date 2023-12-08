@@ -2,17 +2,18 @@
 
 <div id="loginContent" style="margin-top:15%;">
     <div>
-        <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
-        <% if (messages.error) {%>
-            <%= messages.error %>
-        <% } %>
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" id="loginStuff">
+            <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
+            <% if (messages.error) {%>
+                <%= messages.error %>
+            <% } %>
             <label for="email" style="text-align:left;">Email:</label>
             <input type="text" id="email" name="email">
             <br>
             <br>
             <label for="password" style="text-align:left;">Password:</label>
             <input type="password" id="password" name="password">
+            <br>
             <br>
             <div id="button">
                 <button type="submit" class="button-23">Login</a>
