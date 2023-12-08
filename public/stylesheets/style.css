@@ -24,8 +24,12 @@
 
 #navbar #nav{
     float: right;
+    margin-right: 5%;
 }
 
+#slogan{
+    font-size: 25%;
+}
 
 li{
     list-style:none;
