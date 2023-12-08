@@ -378,7 +378,7 @@ body, html {
   }
   
   .styled-table {
-    margin-top: 100%; /* Start off-screen */
+    margin-top: 150%; /* Start off-screen */
     transition: margin-top 1.5s ease-in-out;
   }
   
