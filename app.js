@@ -199,7 +199,7 @@ router.get("/register",checkNotAuthenticated, (req, res) => {
 
 
 // help page route
-router.get("/help",checkNotAuthenticated, (req, res) => {
+router.get("/help", (req, res) => {
     console.log("help page active");
     res.render("help");
 });
@@ -340,7 +340,7 @@ knex('Survey AS s')
 
 //check if they logged in
 function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated() || req.body.password == 'ChickenJoe'){
+    if (req.isAuthenticated()){
         return next()
     }
 
