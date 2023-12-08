@@ -260,29 +260,37 @@ app.get('/filter', checkAuthenticated, (req, res) => {
 console.log(selectedSurvey);''
 })
 
-app.get("/data", checkAuthenticated, (req, res) => {
-knex('Survey AS s')
-  .innerJoin(
-    knex.raw('(SELECT string_agg(org."Q5", \', \') as Organizations, org."SurveyNumber" FROM public."Organization" org group by org."SurveyNumber") AS sub1'),
-    'sub1.SurveyNumber',
-    's.SurveyNumber'
-  )
-  .innerJoin(
-    knex.raw('(SELECT string_agg(Plat."Q7", \', \') as Platforms, Plat."SurveyNumber" FROM public."Platform" Plat group by Plat."SurveyNumber") AS sub2'),
-    'sub2.SurveyNumber',
-    's.SurveyNumber'
-  )
-  .innerJoin(
-    knex.raw('(SELECT "Q8", "Q8INT" FROM public."Q8" Plat) AS sub3'),
-    'sub3.Q8INT',
-    's.Q8'
-  )
-  .select('*').from('Survey AS s').then(survey => {
-    console.log("I work", survey)
-    res.render("data", { mysurvey: survey, username: req.user.username });
-
-});
-});
+app.get("/data", checkAuthenticated, async (req, res) => {
+    try {
+      const survey = await knex('Survey AS s')
+        .innerJoin(
+          knex.raw('(SELECT string_agg(org."Q5", \', \') as Organizations, org."SurveyNumber" FROM public."Organization" org group by org."SurveyNumber") AS sub1'),
+          'sub1.SurveyNumber',
+          's.SurveyNumber'
+        )
+        .innerJoin(
+          knex.raw('(SELECT string_agg(Plat."Q7", \', \') as Platforms, Plat."SurveyNumber" FROM public."Platform" Plat group by Plat."SurveyNumber") AS sub2'),
+          'sub2.SurveyNumber',
+          's.SurveyNumber'
+        )
+        .innerJoin(
+          knex.raw('(SELECT "Q8", "Q8INT" FROM public."Q8" Plat) AS sub3'),
+          'sub3.Q8INT',
+          's.Q8'
+        )
+        .select('*').from('Survey AS s');
+  
+      console.log("I work", survey);
+  
+      const topSurvey = await knex("Survey").max("SurveyNumber").first();
+  
+      res.render("data", { mysurvey: survey, username: req.user.username, topSurvey: topSurvey });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // Handle the error appropriately, e.g., send an error response to the client
+      res.status(500).send("Internal Server Error");
+    }
+  });
 
 
 
