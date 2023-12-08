@@ -323,7 +323,7 @@ body, html {
     width: 25%;
     padding: 10px;
     text-align: center;
-
+    opacity: .75;
 }
 
 #form {
@@ -443,6 +443,7 @@ fieldset label {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 #loginStuff h1 {
