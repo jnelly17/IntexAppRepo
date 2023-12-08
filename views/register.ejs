@@ -3,6 +3,9 @@
 <div id="loginContent" style="margin-top:15%;">
     <div>
         <h1 style="text-align:left; margin-left:26.5%;">Register</h1>
+        <% if (messages.error) {%>
+            <%= messages.error %>
+        <% } %>
         <form action="/register" method="POST">
             <label for="username" style="text-align:left;">New Username:</label>
             <input type="text" id="username" name="username" required>
