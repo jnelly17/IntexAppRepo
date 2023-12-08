@@ -92,7 +92,7 @@ h1{
     margin-left: 15%;
     margin-right: 1%;
     border-radius: 10px; /* You can adjust the value to control the amount of rounding */
-    opacity: 0.8;
+    opacity: 0.9;
     margin-bottom: 3%;
 }
 
@@ -335,6 +335,7 @@ body, html {
 
 #survey{
     margin-left:5%;
+
 }
 
 
