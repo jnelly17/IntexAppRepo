@@ -506,11 +506,11 @@ fieldset label {
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(179, 179, 179, 0.938);
 }
 .styled-table thead tr {
     background-color: #000000;
-    color: #ffffff;
+    color: #fffffff0;
     text-align: left;
 }
 .styled-table th,
@@ -519,15 +519,15 @@ fieldset label {
 }
 
 .styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #ddddddef;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: #f3f3f3ef;
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #737373;
+    border-bottom: 2px solid #737373f1;
 }
 
 .styled-table tbody tr.active-row {
