@@ -108,7 +108,7 @@ app.post("/submitForm", async (req, res) => {
         if (Q7 == null){
             Q7 = ['N/A'];
         }
-        console.log(Q5);
+        console.log(Q7);
             
 
         try{
@@ -118,8 +118,8 @@ app.post("/submitForm", async (req, res) => {
                     SurveyNumber: maxSurveyNumber['max'],
                     Q7: Q7[i]
                 }
-                const inserteddata = await knex("Platform").insert(platdata).returning("*");
-                console.log("Data successfully inserted into Platform table)", inserteddata)
+                const indata = await knex("Platform").insert(platdata).returning("*");
+                console.log("Data successfully inserted into Platform table)", indata)
             }
         } catch(error) {
             console.error("uh oh biggie mistake in the platforms", error)
