@@ -1,31 +1,31 @@
 <%- include('_header.ejs') %>
 
-<div id="loginContent" style="margin-top:15%;">
-    <div>
-        <form action="/register" method="POST" id="loginStuff">
-            <h1 style="text-align:left; margin-left:26.5%;">Register</h1>
-            <% if (messages.error) { %>
-                <p class="error"><%= messages.error %></p>
-            <% } %>
-            <label for="username" style="text-align:left;">New Username:</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <br>
-            <label for="email" style="text-align:left;">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
-            <br>
-            <label for="password" style="text-align:left;">New Password:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <div id="button">
-                <button type="submit" class="button-23">Register</a>
-            </div>
-            <p id="showLoginLink">Return to <a href="login">Login</a></p>
-        </form>
-    </div>
 
+<div>
+    <form action="/register" method="POST" id="loginStuff">
+        <h1 style="text-align:left; margin-left:26.5%;">Register</h1>
+        <% if (messages.error) { %>
+            <p class="error"><%= messages.error %></p>
+        <% } %>
+        <label for="username" style="text-align:left;">New Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <br>
+        <label for="email" style="text-align:left;">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <br>
+        <label for="password" style="text-align:left;">New Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <div id="button">
+            <button type="submit" class="button-23">Register</a>
+        </div>
+        <p id="showLoginLink">Return to <a href="login">Login</a></p>
+    </form>
 </div>
+
+
 <br>
 <br>
 <br>

@@ -1,27 +1,27 @@
 <%- include('_header.ejs') %>
 
-<div id="loginContent" style="margin-top:15%;">
-    <div>
-        <form action="/login" method="POST" id="loginStuff">
-            <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
-            <% if (messages.error) {%>
-                <%= messages.error %>
-            <% } %>
-            <label for="email" style="text-align:left;">Email:</label>
-            <input type="text" id="email" name="email">
-            <br>
-            <br>
-            <label for="password" style="text-align:left;">Password:</label>
-            <input type="password" id="password" name="password">
-            <br>
-            <br>
-            <div id="button">
-                <button type="submit" class="button-23">Login</a>
-            </div>
-            <p id="registrationLink">Unregistered administrator? <a href="register">Register</a></p>
-        </form>
-    </div>
+
+<div>
+    <form action="/login" method="POST" id="loginStuff">
+        <h1 style="text-align:left; margin-left:26.5%;">Login</h1>
+        <% if (messages.error) {%>
+            <%= messages.error %>
+        <% } %>
+        <label for="email" style="text-align:left;">Email:</label>
+        <input type="text" id="email" name="email">
+        <br>
+        <br>
+        <label for="password" style="text-align:left;">Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <br>
+        <div id="button">
+            <button type="submit" class="button-23">Login</a>
+        </div>
+        <p id="registrationLink">Unregistered administrator? <a href="register">Register</a></p>
+    </form>
 </div>
+
 
 <div id="footer01">
     <p2>&copy SMU UH  |  smuuh@gmail.com  |  555-555-5555  </p2>
