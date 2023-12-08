@@ -60,6 +60,7 @@ li a:hover{
 
 #logo:hover{
     color: rgb(210, 210, 210);
+    cursor:grab/pointer;
 }
 
 #logo #sublogo{
