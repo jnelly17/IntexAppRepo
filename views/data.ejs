@@ -18,7 +18,7 @@
       </div>
       <form action="/filter" method="GET">
         <label for="surveyNum">Input the number you would like to see the record for:</label>
-        <input type="number" name="surveyNum" id="surveyNum" required>
+        <input type="number" name="surveyNum" id="surveyNum" max="<%= maxSurveyNumber %>"  required>
         <button type="submit">Filter</button>
     </form>
   </div>
